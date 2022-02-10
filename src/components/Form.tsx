@@ -8,13 +8,18 @@ const Form: React.FC = () => {
   const [characters, setCharactersData] = useState<ICharacter[] | []>([]);
   const [search, setSearch] = useState<string>("");
   const [status, setStatus] = useState<string>("");
+  const searchAndInitStateStatus = (targetValue: HTMLInputElement["value"]) => {
+    setSearch(targetValue);
+    if (status !== "") {
+      setStatus("");
+    }
+  };
 
   //useEffect joue une function une fois que le component est monté
   // [] est un calleback est comme il est vide il ne sera joué qu'une seule fois
   // [search] à chaque modification de la valeur du search il va rejouer le useEffect
   useEffect(() => {
     axios
-      // https://rickandmortyapi.com/api/character
       .get(
         `https://rickandmortyapi.com/api/character/${
           !search ? `` : `?name=` + search
@@ -31,14 +36,14 @@ const Form: React.FC = () => {
             type="text"
             placeholder="Entrez le nom d'un perso"
             id="search-input"
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => searchAndInitStateStatus(e.target.value)}
           />
-          <input
+          {/* <input
             type="submit"
             value="Rechercher"
             disabled={!search ? true : false}
             style={!search ? { cursor: "not-allowed" } : { cursor: "pointer" }}
-          />
+          /> */}
         </form>
 
         <div className="btn-sort-container">

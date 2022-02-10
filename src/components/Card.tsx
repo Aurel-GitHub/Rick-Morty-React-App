@@ -9,7 +9,16 @@ interface ICharacterProps {
 
 const Card: React.FC<ICharacterProps> = ({ character }: ICharacterProps) => {
   const loremIpsumImage: string = "https://picsum.photos/seed/picsum/200/300";
+  const addLocalStorage = () => {
+    let storeData = window.localStorage.characters
+      ? window.localStorage.characters.split(",")
+      : [];
 
+    if (!storeData.includes(character.id.toString())) {
+      storeData.push(character.id);
+      window.localStorage.characters = storeData;
+    }
+  };
   return (
     <div className="card">
       <img
@@ -46,7 +55,9 @@ const Card: React.FC<ICharacterProps> = ({ character }: ICharacterProps) => {
         ) : (
           ""
         )}
-        <div className="btn">Ajouter</div>
+        <div className="btn" onClick={() => addLocalStorage()}>
+          Ajouter
+        </div>
       </div>
     </div>
   );
