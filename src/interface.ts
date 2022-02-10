@@ -6,5 +6,5 @@ export interface ICharacter {
   type: string;
   species: string;
   gender: string;
-  created: Date;            
+  created: Date;
 }

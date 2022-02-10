@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import { ICharacter } from "../interface";
-import { DateTime } from "luxon"
+import { DateTime } from "luxon";
 
 interface ICharacterProps {
   character: ICharacter;
@@ -9,7 +9,7 @@ interface ICharacterProps {
 const Card: React.FC<ICharacterProps> = ({ character }: ICharacterProps) => {
   const loremIpsumImage: string = "https://picsum.photos/seed/picsum/200/300";
 
-  const dateFormated = new Date(character.created).toLocaleDateString("fr-FR")
+  const dateFormated = new Date(character.created).toLocaleDateString("fr-FR");
 
   return (
     <div className="card">
