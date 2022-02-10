@@ -41,14 +41,14 @@
     justify-content: space-around;
     cursor: pointer;
 
-    #goodToBad {
+    #alive {
       border-radius: 10px 0 0 10px;
     }
-    #badToGood {
+    #dead {
       border-radius: 0 10px 10px 0;
     }
-    #goodToBad,
-    #badToGood {
+    #alive,
+    #dead {
       background: $color-1;
       width: 110px;
       transition: 0.3s;
@@ -58,16 +58,18 @@
         background: $black;
       }
     }
-    #goodToBad span {
-      transform: translateY(-50%) rotate(-90deg);
+    #alive span {
+      transform: translateY(-50%);
       right: 18px;
+      margin-top: 3px;
     }
-    #badToGood span {
-      transform: translateY(-50%) rotate(90deg);
+    #dead span {
+      transform: translateY(-50%);
       left: 16px;
+      margin-top: 3px;
     }
-    #goodToBad span,
-    #badToGood span {
+    #alive span,
+    #dead span {
       position: absolute;
       top: 50%;
     }

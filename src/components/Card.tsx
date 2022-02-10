@@ -1,15 +1,14 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import { ICharacter } from "../interface";
-import { DateTime } from "luxon";
+import dateFormated from "../hooks/dateFormated";
 
 interface ICharacterProps {
   character: ICharacter;
 }
+
 const Card: React.FC<ICharacterProps> = ({ character }: ICharacterProps) => {
   const loremIpsumImage: string = "https://picsum.photos/seed/picsum/200/300";
-
-  const dateFormated = new Date(character.created).toLocaleDateString("fr-FR");
 
   return (
     <div className="card">
@@ -18,11 +17,37 @@ const Card: React.FC<ICharacterProps> = ({ character }: ICharacterProps) => {
         alt="character-image"
       />
       <h2>{character.name}</h2>
-      <h5>statut: {character.status}</h5>
-      <h5>type: {character.type}</h5>
-      <h5>espèce: {character.species}</h5>
-      <h5>genre: {character.gender}</h5>
-      <h5>crée le: {dateFormated}</h5>
+      <div className="description">
+        {character.status ? (
+          <h3>
+            statut:{" "}
+            {character.status === "Alive"
+              ? "En vie"
+              : character.status === "Dead"
+              ? "Mort"
+              : "Inconnu"}
+          </h3>
+        ) : (
+          ""
+        )}
+        {character.type ? <h3>type: {character.type}</h3> : ""}
+        {character.species ? (
+          <h3>espèce: {character.species === "Human" ? "Humain" : "Alien"}</h3>
+        ) : (
+          ""
+        )}
+        {character.gender ? (
+          <h3>genre: {character.gender === "Male" ? "Homme" : "Femme"}</h3>
+        ) : (
+          ""
+        )}
+        {character.created ? (
+          <h3>crée le: {dateFormated(character.created)}</h3>
+        ) : (
+          ""
+        )}
+        <div className="btn">Ajouter</div>
+      </div>
     </div>
   );
 };

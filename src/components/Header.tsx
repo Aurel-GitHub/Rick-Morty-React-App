@@ -13,9 +13,9 @@ const Header: React.FC = () => {
             >
               <li>Accueil</li>
             </NavLink>
-            {/* <NavLink to="/coup-de-coeur">
-              <li>Coup de coeur</li>
-            </NavLink> */}
+            <NavLink to="/coup-de-coeur">
+              <li>Ma liste</li>
+            </NavLink>
           </ul>
         </nav>
         <h1>Rick and Morty App</h1>
