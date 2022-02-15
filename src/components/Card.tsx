@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React from "react";
+import React, { useState } from "react";
 import { ICharacter } from "../interface";
 import dateFormated from "../hooks/dateFormated";
 
@@ -19,8 +19,16 @@ const Card: React.FC<ICharacterProps> = ({ character }: ICharacterProps) => {
       window.localStorage.characters = storeData;
     }
   };
+  const deleteStorage = () => {
+    let storeData = window.localStorage.characters.split(",");
+    let newData = storeData.filter((id: string) => id != character.id)
+    window.localStorage.characters = newData;
+    window.location.reload()
+
+    
+  }
   return (
-    <div className="card">
+    <div className="card" id={character.id}>
       <img
         src={character.image ? character.image : loremIpsumImage}
         alt="character-image"
@@ -55,9 +63,13 @@ const Card: React.FC<ICharacterProps> = ({ character }: ICharacterProps) => {
         ) : (
           ""
         )}
-        <div className="btn" onClick={() => addLocalStorage()}>
-          Ajouter
-        </div>
+        {document.location.href === 'http://localhost:3000/ma-liste' ? (        <div className="btn" onClick={() => deleteStorage()}>
+          supprimer
+        </div>) :(        <div className="btn" onClick={() => addLocalStorage()}>
+          ajouter
+        </div>)}
+
+
       </div>
     </div>
   );
